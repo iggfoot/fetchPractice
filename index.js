@@ -1,31 +1,59 @@
-function searchForUserHandle() {
-//goal: to take user name from a form to search
-/*pcode: when form is submitted -> trigger event listener
-         pass user name to triggerCall*/
-$('form').submit(function(event) {
-    let userName = $('#user-name-input').val();
-
-}
- 
-   console.log("searchForUserHandle function ran") 
-};
-
-function getGithubApi () {
-    const url = `https://api.github.com/orgs/${userName}/repos`
-    console.log("getGithubApi function ran")
-};
 
 const options = {
-    headers: new Headers ({
-        Accept: application/vnd.github.v3+json,
-
+    headers: new Headers({
+        'Content-Type': "application/json",
+        "Accept": "application/json",
+        "type": "all",
+        "sort": "created",
+        "direction": "desc",
+        "visibility": "public"
     })
 };
 
-fetch(url, options){
-
-    console.log("fetch function ran")
+//goal: to take user name from a form to search
+/*pcode: when form is submitted -> trigger event listener
+         pass user name to triggerCall*/
+function searchForUserHandle() {
+    $('form').submit(function(event) {
+        event.preventDefault();
+        let userName = $('#user-name-input').val();
+        const dataObj = getGithubApi(userName);
+});
+ 
+   console.log("searchForUserHandle function ran"); 
 }
+
+function getGithubApi (userName) {
+    console.log("getGithubApi function ran");
+    const url = `https://api.github.com/orgs/${userName}/repos`;
+    fetch(url, options)
+        .then(response => response.json())
+        .then(responseJson => console.log(responseJson));
+        console.log("fetch function ran");
+}
+searchForUserHandle();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 function triggerCall() {
