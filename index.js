@@ -2,11 +2,12 @@ function searchForUserHandle() {
 //goal: to take user name from a form to search
 /*pcode: when form is submitted -> trigger event listener
          pass user name to triggerCall*/
-$('form').submit(function(event)) {
-    
+$('form').submit(function(event) {
+    let userName = $('#user-name-input').val();
+
 }
  
-         let userName = 
+   console.log("searchForUserHandle function ran") 
 };
 
 function getGithubApi () {
